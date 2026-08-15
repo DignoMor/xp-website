@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+.astro/
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Test scratch
+.tmp/
+
+# Deploy sequence marker (local only)
+deploy.seq

@@ -1,0 +1,10 @@
+# Ignore everything by default; re-include only what the build needs.
+*
+!package.json
+!package-lock.json
+!astro.config.ts
+!tsconfig.json
+!public/
+!public/**
+!src/
+!src/**
