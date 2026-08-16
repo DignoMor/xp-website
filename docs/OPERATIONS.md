@@ -142,8 +142,17 @@ release is never deleted by cleanup.
 
 ## HTTPS and certificate renewal (human)
 
-Issuing the production certificate is a guided wizard (issue #10): point DNS at
-the VPS, run Certbot with Let’s Encrypt, and confirm Nginx serves HTTPS.
+Issuing the production certificate is a guided wizard (issue #10). Copy
+`scripts/provision/https.sh` to the VPS and run it **on the VPS** as a
+sudoer (use `ssh -t` so prompts work):
+
+```bash
+bash scripts/provision/https.sh
+```
+
+It points DNS at the VPS, sets Nginx `server_name`, installs the Certbot
+snap, issues a Let’s Encrypt certificate for production, and runs
+`certbot renew --dry-run`. Apex vs `www` is deferred.
 
 Verify renewal configuration anytime with:
 
