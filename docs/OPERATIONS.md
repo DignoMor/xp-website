@@ -75,6 +75,15 @@ run by CI. On Ubuntu 24.04 it must leave you with:
 4. A bare Git repo owned by the deploy user, reachable over SSH-key auth
 5. Directory layout for production and preview as above
 
+Copy `scripts/provision/vps.sh` to the VPS and run it **on the VPS** as a
+sudoer (use `ssh -t` so prompts work):
+
+```bash
+scp scripts/provision/vps.sh YOUR_SUDOER@YOUR_VPS:~/
+ssh -t YOUR_SUDOER@YOUR_VPS
+bash ~/vps.sh
+```
+
 Until that wizard is run, local tests under `tests/deploy/` exercise the same
 hooks against a temporary fixture.
 
