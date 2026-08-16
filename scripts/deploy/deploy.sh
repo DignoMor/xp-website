@@ -96,6 +96,9 @@ if [[ -d "${RELEASE_DIR}" ]]; then
 fi
 mv "${STAGE_DIR}" "${RELEASE_DIR}"
 
+# Nginx (www-data) reads this tree without sharing the deploy group (ADR 0001).
+chmod -R a+rX "${RELEASE_DIR}"
+
 log_line "activate" "env=${ENV_NAME}" "commit=${COMMIT}" "release=${RELEASE_DIR}"
 atomic_activate "${ENV_NAME}" "${RELEASE_DIR}"
 

@@ -24,8 +24,15 @@ all live on Ubuntu 24.04, not inside the build image.
 
 ## Layout on the VPS
 
-Set `XP_WEBSITE_HOME` to the deploy user's home for the site (example:
-`/var/www/xp-website`):
+Set `XP_WEBSITE_HOME` to the deploy user's home. A normal `/home/<user>`
+path is fine; `/var/www/xp-website` is only an example.
+
+Nginx runs as `www-data` and must be able to open
+`releases/production/current` without belonging to the deploy user's
+group. Make the home `711` so Nginx can traverse a known path but cannot
+list it. Keep release directories world-readable (`755` / `644`). Deploy
+runs `chmod -R a+rX` on each new release so `www-data` can read it. Do
+not add `www-data` to the deploy group.
 
 ```
 $XP_WEBSITE_HOME/
